@@ -1,4 +1,6 @@
-import jakarta.servlet.http.HttpServlet;
+package com.nicomincuzzi.server;
+
+import com.nicomincuzzi.MazeRoute;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -34,7 +36,7 @@ public class HttpServer {
             context.setContextPath(contextPath);
             server.setHandler(context);
 
-            context.addServlet(new ServletHolder(new Foo()), "/foo");
+            context.addServlet(new ServletHolder(new MazeRoute()), "/api/v1/mazeroute");
 
             server.start();
         } catch (Exception e) {
