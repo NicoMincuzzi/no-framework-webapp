@@ -28,4 +28,6 @@ The lifecycle of a servlet is controlled by the container in which the servlet h
 
 If it needs to remove the servlet, the container finalizes the servlet by calling the servlet's `destroy` method.
 
-![servlet](https://user-images.githubusercontent.com/48289901/119904880-5dacf300-bf4b-11eb-8fcb-bacee2f38d88.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48289901/119905545-bdf06480-bf4c-11eb-99d1-44cf34f41740.jpg" alt="servlet"/>
+</p>
