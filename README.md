@@ -26,6 +26,6 @@ The lifecycle of a servlet is controlled by the container in which the servlet h
 
 2. The container invokes the `service` method, passing request and response objects. Service methods are discussed in Writing Service Methods.
 
-If it needs to remove the servlet, the container finalizes the servlet by calling the servlet's destroy method. For more information, see Finalizing a Servlet.
+If it needs to remove the servlet, the container finalizes the servlet by calling the servlet's `destroy` method.
 
 ![servlet](https://user-images.githubusercontent.com/48289901/119904880-5dacf300-bf4b-11eb-8fcb-bacee2f38d88.png)
