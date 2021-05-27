@@ -6,7 +6,7 @@ A servlet is a Java programming language class used to extend the capabilities o
 
 The `javax.servlet` and `javax.servlet.http` packages provide interfaces and classes for writing servlets. All servlets must implement the Servlet interface, which defines lifecycle methods. When implementing a generic service, you can use or extend the GenericServlet class provided with the Java Servlet API. The HttpServlet class provides methods, such as doGet and doPost, for handling HTTP-specific services.
 
-Servlet Lifecycle
+### Servlet Lifecycle
 The lifecycle of a servlet is controlled by the container in which the servlet has been deployed. When a request is mapped to a servlet, the container performs the following steps.
 
 If an instance of the servlet does not exist, the web container:
@@ -28,15 +28,18 @@ You can monitor and react to events in a servlet's lifecycle by defining listene
 You define a listener class as an implementation of a listener interface. Table 17-1 lists the events that can be monitored and the corresponding interface that must be implemented. When a listener method is invoked, it is passed an event that contains information appropriate to the event. For example, the methods in the HttpSessionListener interface are passed an HttpSessionEvent, which contains an HttpSession.
 
 Use the @WebListener annotation to define a listener to get events for various operations on the particular web application context. Classes annotated with @WebListener must implement one of the following interfaces:
-
+```
 javax.servlet.ServletContextListener
 javax.servlet.ServletContextAttributeListener
 javax.servlet.ServletRequestListener
 javax.servlet.ServletRequestAttributeListener
 javax.servlet..http.HttpSessionListener
 javax.servlet..http.HttpSessionAttributeListener
+```
+
 For example, the following code snippet defines a listener that implements two of these interfaces:
 
+```
 import javax.servlet.ServletContextAttributeListener;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -45,6 +48,8 @@ import javax.servlet.annotation.WebListener;
 public class SimpleServletListener implements ServletContextListener,
         ServletContextAttributeListener {
     ...
+```
+
 17.2.2 Handling Servlet Errors
 Any number of exceptions can occur when a servlet executes. When an exception occurs, the web container generates a default page containing the following message:
 
@@ -55,14 +60,15 @@ But you can also specify that the container should return a specific error page 
 17.4 Creating and Initializing a Servlet
 Use the @WebServlet annotation to define a servlet component in a web application. This annotation is specified on a class and contains metadata about the servlet being declared. The annotated servlet must specify at least one URL pattern. This is done by using the urlPatterns or value attribute on the annotation. All other attributes are optional, with default settings. Use the value attribute when the only attribute on the annotation is the URL pattern; otherwise, use the urlPatterns attribute when other attributes are also used.
 
-Classes annotated with @WebServlet must extend the javax.servlet.http.HttpServlet class. For example, the following code snippet defines a servlet with the URL pattern /report:
-
+Classes annotated with @WebServlet must extend the javax.servlet.http.HttpServlet class. For example, the following code snippet defines a servlet with the URL pattern `/report`:
+```
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 @WebServlet("/report")
 public class MoodServlet extends HttpServlet {
     ...
+```
 The web container initializes a servlet after loading and instantiating the servlet class and before delivering requests from clients. To customize this process to allow the servlet to read persistent configuration data, initialize resources, and perform any other one-time activities, you can either override the init method of the Servlet interface or specify the initParams attribute of the @WebServlet annotation. The initParams attribute contains a @WebInitParam annotation. If it cannot complete its initialization process, a servlet throws an UnavailableException.
 
 Use an initialization parameter to provide data needed by a particular servlet. By contrast, a context parameter provides data that is available to all components of a web application.
@@ -95,7 +101,7 @@ You can also retrieve an input stream from the request and manually parse the da
 
 HTTP servlets are passed an HTTP request object, HttpServletRequest, which contains the request URL, HTTP headers, query string, and so on. An HTTP request URL contains the following parts:
 
-http://[host]:[port][request-path]?[query-string]
+`http://[host]:[port][request-path]?[query-string]`
 The request path is further composed of the following elements.
 
 Context path: A concatenation of a forward slash (/) with the context root of the servlet's web application.
