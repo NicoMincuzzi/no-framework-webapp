@@ -1,6 +1,6 @@
 package com.nicomincuzzi.server;
 
-import com.nicomincuzzi.MazeRoute;
+import com.nicomincuzzi.controller.MazeRoute;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -32,7 +32,7 @@ public class HttpServer {
             connector.setPort(port);
             server.setConnectors(new Connector[]{connector});
 
-            ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+            ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
             context.setContextPath(contextPath);
             server.setHandler(context);
 

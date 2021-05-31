@@ -1,4 +1,4 @@
-package com.nicomincuzzi;
+package com.nicomincuzzi.controller;
 
 import java.util.List;
 

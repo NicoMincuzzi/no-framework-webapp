@@ -1,16 +1,17 @@
-package com.nicomincuzzi;
+package com.nicomincuzzi.maze;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 public class MazeMap {
-    private Map<String, List<Room>> rooms;
+    @JsonProperty
+    private List<Room> rooms;
 
-    public Map<String, List<Room>> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 
