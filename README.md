@@ -1,4 +1,7 @@
 # no-framework-webapp
+The aim is to develop a web application, which doesn't need to use frameworks. 
+
+## Purpose
 
 ## What dependencies do you need? 
 
