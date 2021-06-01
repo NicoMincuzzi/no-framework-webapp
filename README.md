@@ -9,6 +9,10 @@ The aim is to develop a web application, which doesn't need to use frameworks.
 implementation ('org.eclipse.jetty:jetty-servlet:11.0.2')
 ```
 
+```groovy
+implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+```
+
 ## Servlet
 
 ### What Is a Servlet?
