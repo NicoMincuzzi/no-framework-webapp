@@ -1,9 +1,9 @@
 # no-framework-webapp
 The aim is to develop a Java web application, which doesn't need to use frameworks. 
 
-## Purpose
+## Purpose :dart: 
 
-## What dependencies do you need? 
+## What dependencies do you need? :link:
 
 ```groovy
 implementation ('org.eclipse.jetty:jetty-servlet:11.0.2')
