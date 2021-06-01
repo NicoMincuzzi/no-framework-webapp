@@ -19,7 +19,7 @@ public class StartState implements MazeState<ManagerMaze> {
     public void execute() {
         JsonManagerMaze jsonMngMaze = new JsonManagerMaze();
 
-        MazeMap mazeMap = jsonMngMaze.openJsonFile(JSON_MAP);
+        MazeMap mazeMap = new MazeMap().retrieve(JSON_MAP);
 
         maze.changeStateMazeFsm(new InsertState(mazeMap, jsonMngMaze));
     }
