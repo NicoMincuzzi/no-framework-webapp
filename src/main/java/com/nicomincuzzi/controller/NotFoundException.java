@@ -1,7 +1,7 @@
 package com.nicomincuzzi.controller;
 
-import com.nicomincuzzi.controller.ClientError;
-
-public class NotFoundException {
-
+public class NotFoundException extends ClientError {
+    public NotFoundException(String path) {
+        super(404, "Not found: " + path);
+    }
 }
