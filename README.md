@@ -1,5 +1,5 @@
 # no-framework-webapp
-The aim is to develop a web application, which doesn't need to use frameworks. 
+The aim is to develop a Java web application, which doesn't need to use frameworks. 
 
 ## Purpose
 
