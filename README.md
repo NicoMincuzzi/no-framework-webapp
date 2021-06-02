@@ -1,5 +1,5 @@
 # no-framework-webapp
-[![CI](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml/badge.svg)](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml)
+[![CI](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml)
 
 The aim is to develop a Java web application, which doesn't need to use frameworks. 
 
