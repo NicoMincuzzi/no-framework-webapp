@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 import java.util.List;
 
 @Slf4j
@@ -20,10 +19,9 @@ public class MazeMap {
     }
 
     public MazeMap retrieve(String filename) {
-        URL url = getClass().getClassLoader().getResource(filename);
-        ObjectMapper mapper = new ObjectMapper();
+        InputStream input = getClass().getClassLoader().getResourceAsStream(filename);
         try {
-            return mapper.readValue(new File(url.getFile()), MazeMap.class);
+            return new ObjectMapper().readValue(input, MazeMap.class);
         } catch (IOException e) {
             log.error("Cannot open file.", e);
         }
