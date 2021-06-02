@@ -10,18 +10,18 @@ repositories {
 }
 
 dependencies {
-    implementation ('org.eclipse.jetty:jetty-servlet:11.0.2'){
+    implementation('org.eclipse.jetty:jetty-servlet:11.0.2') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
     }
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.3'
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.18'
-    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.18'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-}
+    implementation('org.slf4j:slf4j-api:1.7.30')
+    implementation('ch.qos.logback:logback-classic:1.2.3')
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.12.3')
+    compileOnly('org.projectlombok:lombok:1.18.18')
+    annotationProcessor('org.projectlombok:lombok:1.18.18')
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.0')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.7.0')
 
-test {
-    useJUnitPlatform()
+    test {
+        useJUnitPlatform()
+    }
 }

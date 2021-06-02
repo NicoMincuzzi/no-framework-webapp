@@ -91,7 +91,7 @@ public class MazeRoute extends HttpServlet {
         List<Map<String, String>> listResult = new ArrayList<>();
 
         for (String idStepRoute : resultOutput.keySet()) {
-            String items = null;
+            String items = "";
 
             for (String item : resultOutput.get(idStepRoute).getItems()) {
                 items = item.concat(",");
