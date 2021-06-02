@@ -67,3 +67,9 @@ If it needs to remove the servlet, the container finalizes the servlet by callin
 <p align="center">
   <img src="https://user-images.githubusercontent.com/48289901/119905545-bdf06480-bf4c-11eb-99d1-44cf34f41740.jpg" alt="servlet"/>
 </p>
+
+## JDBC
+
+Java Database Connectivity (JDBC) is an application programming interface (API) for the programming language Java, which defines how a client may access a database. It is part of the Java Standard Edition platform and provides methods to query and update data in a database, and is oriented towards relational databases.
+
+[PostgreSQL JDBC Driver](https://jdbc.postgresql.org/documentation/head/intro.html) (PgJDBC for short) allows Java programs to connect to a PostgreSQL database using standard, database independent Java code. Is an open source JDBC driver written in Pure Java (Type 4), and communicates in the PostgreSQL native network protocol. Because of this, the driver is platform independent; once compiled, the driver can be used on any system.
