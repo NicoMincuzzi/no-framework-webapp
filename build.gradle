@@ -16,6 +16,7 @@ dependencies {
     implementation('org.slf4j:slf4j-api:1.7.30')
     implementation('ch.qos.logback:logback-classic:1.2.3')
     implementation('com.fasterxml.jackson.core:jackson-databind:2.12.3')
+    implementation ('org.postgresql:postgresql:42.2.20')
     compileOnly('org.projectlombok:lombok:1.18.18')
     annotationProcessor('org.projectlombok:lombok:1.18.18')
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.0')
