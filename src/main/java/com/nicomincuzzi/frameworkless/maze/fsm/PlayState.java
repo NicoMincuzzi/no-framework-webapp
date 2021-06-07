@@ -30,12 +30,11 @@ public class PlayState implements MazeState<ManagerMaze> {
         Navigation navMap = new Navigation(findingItems, jsonMngMaze.getArrayRooms());
 
         log.info("Searching items...");
-        navMap.searchItemsMaze(roomMaze);
+        Map<String, GameResult> foundItems = navMap.searchItemsMaze(roomMaze);
 
-        if (isFoundItem(navMap.getOutputMaze()))
-            this.maze.changeStateMazeFsm(new WinState(navMap));
-        else
-            this.maze.changeStateMazeFsm(new LoseState(navMap));
+        MazeState<ManagerMaze> state = isFoundItem(foundItems) ? new WinState(navMap) : new LoseState(navMap);
+
+        maze.changeStateMazeFsm(state);
     }
 
     private boolean isFoundItem(Map<String, GameResult> resultOutput) {

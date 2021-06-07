@@ -33,18 +33,16 @@ public class MazeRoute extends HttpServlet {
 
         findingItems.addAll(objsCollect);
 
+        Map<String, GameResult> foundItems = new HashMap<>();
         try {
-            runMazeRoutePuzzleWebApp(Integer.parseInt(roomNumber), findingItems);
+            foundItems = runMazeRoutePuzzleWebApp(Integer.parseInt(roomNumber), findingItems);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        Map<String, GameResult> resultOutput = navMap.getOutputMaze();
-
         resp.setContentType("application/json");
 
         //create a JSON bodyRequest response
-        Map<String, List<Map<String, String>>> response = setBodyResponse(resultOutput);
+        Map<String, List<Map<String, String>>> response = setBodyResponse(foundItems);
 
         // Allocate a output writer to write the response message into the network socket
         PrintWriter outResponse = null;
@@ -77,13 +75,13 @@ public class MazeRoute extends HttpServlet {
         return new ObjectMapper().readValue(sb.toString(), Map.class);
     }
 
-    private void runMazeRoutePuzzleWebApp(int roomNumber, List<String> findingItems) {
+    private Map<String, GameResult> runMazeRoutePuzzleWebApp(int roomNumber, List<String> findingItems) {
         JsonManagerMaze jsonMngMaze = new JsonManagerMaze();
         navMap = new Navigation(findingItems, jsonMngMaze.getArrayRooms());
 
         MazeMap mazeMap = new MazeMap().retrieve(JSON_MAP);
         Room roomMaze = jsonMngMaze.getRoomById(roomNumber, mazeMap);
-        navMap.searchItemsMaze(roomMaze);
+        return navMap.searchItemsMaze(roomMaze);
     }
 
     private Map<String, List<Map<String, String>>> setBodyResponse(Map<String, GameResult> resultOutput) {

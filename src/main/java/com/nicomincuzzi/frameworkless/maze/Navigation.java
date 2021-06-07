@@ -1,5 +1,6 @@
 package com.nicomincuzzi.frameworkless.maze;
 
+import com.nicomincuzzi.frameworkless.dao.ResultEntity;
 import com.nicomincuzzi.frameworkless.utils.StringHandler;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +22,7 @@ public class Navigation {
         jsonMngMaze = new JsonManagerMaze();
     }
 
-    public void searchItemsMaze(Room roomMaze) {
+    public Map<String, GameResult> searchItemsMaze(Room roomMaze) {
         List<String> foundItems = new ArrayList<>();
 
         for (String item : findingItems) {
@@ -46,9 +47,10 @@ public class Navigation {
 
             mazeNavigation(roomMaze);
         }
+        return outputMaze;
     }
 
-    public void showResultRetroRoutePuzzle() {
+    public ResultEntity showResultRetroRoutePuzzle() {
         log.info("+----+-------------+--------------------+");
         log.info("| ID | Room        | Object Collected   |");
         log.info("+----+-------------+--------------------+");
@@ -65,6 +67,7 @@ public class Navigation {
                     " | " + items + "|");
         }
         log.info("+----+-------------+--------------------+");
+        return null;
     }
 
     private void mazeNavigation(Room roomMaze) {
@@ -92,10 +95,6 @@ public class Navigation {
             room.setEast(null);
             moveNextRoom(nextRoom);
         }
-    }
-
-    public Map<String, GameResult> getOutputMaze() {
-        return outputMaze;
     }
 
     private void moveNextRoom(int idNextRoom) {
