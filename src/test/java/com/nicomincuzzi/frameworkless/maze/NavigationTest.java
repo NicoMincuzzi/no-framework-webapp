@@ -1,8 +1,8 @@
 package com.nicomincuzzi.frameworkless.maze;
 
-import com.nicomincuzzi.frameworkless.dao.ResultEntity;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +17,7 @@ class NavigationTest {
 
         Navigation navigation = new Navigation(emptyList(), singletonList(new Room()));
 
-        ResultEntity result = navigation.showResultRetroRoutePuzzle();
+        navigation.showResultRetroRoutePuzzle(new HashMap<>());
     }
 
     @Test
