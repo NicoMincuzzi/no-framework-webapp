@@ -1,6 +1,5 @@
 package com.nicomincuzzi.frameworkless.maze;
 
-import com.nicomincuzzi.frameworkless.dao.ResultEntity;
 import com.nicomincuzzi.frameworkless.utils.StringHandler;
 import lombok.extern.slf4j.Slf4j;
 

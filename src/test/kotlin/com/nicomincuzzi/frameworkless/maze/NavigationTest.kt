@@ -14,10 +14,8 @@ internal class NavigationTest {
     fun oneItemsIsFoundWithSuccess() {
         val findingItems = listOf("Knife")
         val navigation = Navigation(findingItems, listOf(Room()))
-        val roomMaze = Room()
-        val utensil = Utensil()
-        utensil.name = "Knife"
-        roomMaze.objects = listOf(utensil)
+        val utensil = Utensil(name = "Knife")
+        val roomMaze = Room(objects = listOf(utensil))
 
         val result = navigation.searchItemsMaze(roomMaze)
         val expectedGameResult = result.entries.iterator().next().value
@@ -27,10 +25,8 @@ internal class NavigationTest {
     @Test
     fun noItemsIsFound() {
         val navigation = Navigation(emptyList(), listOf(Room()))
-        val roomMaze = Room()
-        val utensil = Utensil()
-        utensil.name = "Knife"
-        roomMaze.objects = listOf(utensil)
+        val utensil = Utensil(name = "Knife")
+        val roomMaze = Room(objects = listOf(utensil))
 
         val result = navigation.searchItemsMaze(roomMaze)
         val expectedGameResult = result.entries.iterator().next().value
