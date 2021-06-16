@@ -70,6 +70,28 @@ If it needs to remove the servlet, the container finalizes the servlet by callin
   <img src="https://user-images.githubusercontent.com/48289901/119905545-bdf06480-bf4c-11eb-99d1-44cf34f41740.jpg" alt="servlet"/>
 </p>
 
+### ServletContextListener
+
+The ServletContextListener will run your code before the web application is started. For example, you want to initialize a database connection pool before the web application is started.
+
+In this example, we will show you how to create a custom listener class by implementing ServletContextListener, which run your code before the web application is started.
+
+```java
+@WebListener
+public class ContextListener implements ServletContextListener {
+ 
+    @Override
+    public void contextInitialized(ServletContextEvent event) {
+        System.out.println("The application started");
+    }
+     
+    @Override
+    public void contextDestroyed(ServletContextEvent event) {
+        System.out.println("The application stopped");
+    }
+}
+```
+
 ## JDBC
 
 Java Database Connectivity (JDBC) is an application programming interface (API) for the programming language Java, which defines how a client may access a database. It is part of the Java Standard Edition platform and provides methods to query and update data in a database, and is oriented towards relational databases.
