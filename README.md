@@ -3,6 +3,8 @@
 
 The aim is to develop a Java web application, which doesn't need to use frameworks. 
 
+See more information about the [Frameworkless movement](https://github.com/frameworkless-movement/manifesto).
+
 ## Purpose :dart: 
 
 ## What dependencies do you need? :link:
