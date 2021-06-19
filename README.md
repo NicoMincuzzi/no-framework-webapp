@@ -8,7 +8,7 @@ The aim is to develop a web application, which doesn't need to use `frameworks`.
 See more information about the [Frameworkless movement](https://github.com/frameworkless-movement/manifesto).
 
 
-In particular, here we show how to implemente a Java Web application, replacing some the most famous frameworks (like Spring and JPA) with plain [servlets]() and [JDBC]().
+In particular, here we show how to implemente a Java Web application, replacing some the most famous frameworks (like Spring and JPA) with plain [servlets](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#servlet) and [JDBC](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#jdbc).
 
 ## What dependencies do you need? :link:
 
