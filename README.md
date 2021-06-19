@@ -3,7 +3,7 @@
 
 ## Purpose :dart: 
 
-The aim is to develop a web application, which doesn't need to use frameworks. In particular, it shows how to develop a project or a single feature with no dependence on a framework is a real possibility. We acknowledge the availability of alternatives to frameworks, by using dedicated libraries and/or standard libraries.
+The aim is to develop a web application, which doesn't need to use `frameworks`. In particular, it shows how to develop a project or a single feature with no dependence on a `framework` is a **real possibility**. We acknowledge the availability of alternatives to `frameworks`, by using dedicated libraries and/or standard libraries.
 
 See more information about the [Frameworkless movement](https://github.com/frameworkless-movement/manifesto).
 
