@@ -63,7 +63,8 @@ The lifecycle of a servlet is controlled by the container in which the servlet h
    * Initializes the servlet instance by calling the `init` method (initialization is covered in Creating and Initializing a Servlet)
      * Generally, the servlet is created when a user first invokes a URL corresponding to the servlet, but you can also specify that the which servlet should be loaded when the server is first started 
 
-2. The container invokes the `service` method, passing request and response objects. Service methods are discussed in Writing Service Methods.
+2. The container invokes the `service` method, passing request and response objects.
+  * Each time the server receives a request for a servlet, the web container spawns a new thread and calls `service()`
 
 If it needs to remove the servlet, the container finalizes the servlet by calling the servlet's `destroy` method.
 
