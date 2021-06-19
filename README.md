@@ -1,14 +1,13 @@
 # no-framework-webapp
 [![CI](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml)
 
+In particular, here we show how to implement a Java Web application, replacing some the most famous frameworks (like Spring and JPA) with plain [servlets](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#servlet) and [JDBC](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#jdbc).
+
 ## Purpose :dart: 
 
 The aim is to develop a web application, which doesn't need to use `frameworks`. In particular, it shows how to develop a project or a single feature with no dependence on a `framework` is a **real possibility**. We acknowledge the availability of alternatives to `frameworks`, by using dedicated libraries and/or standard libraries.
 
 See more information about the [Frameworkless movement](https://github.com/frameworkless-movement/manifesto).
-
-
-In particular, here we show how to implement a Java Web application, replacing some the most famous frameworks (like Spring and JPA) with plain [servlets](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#servlet) and [JDBC](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#jdbc).
 
 ## What dependencies do you need? :link:
 
