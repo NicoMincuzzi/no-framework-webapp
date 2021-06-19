@@ -1,7 +1,7 @@
 # no-framework-webapp
 [![CI](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml)
 
-The aim is to develop a Java web application, which doesn't need to use frameworks. 
+The aim is to develop a web application, which doesn't need to use frameworks. In particular, we acknowledge the availability of alternatives to frameworks, by using dedicated librarie and/or standard libraries.
 
 See more information about the [Frameworkless movement](https://github.com/frameworkless-movement/manifesto).
 
