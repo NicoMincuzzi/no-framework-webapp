@@ -4,11 +4,13 @@ services:
   db:
     image: postgres
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=frameworkless
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
   mazeroute:
     container_name: mazeroute-app
     build:

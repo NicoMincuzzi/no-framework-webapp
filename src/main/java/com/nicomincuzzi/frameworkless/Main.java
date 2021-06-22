@@ -1,6 +1,7 @@
 package com.nicomincuzzi.frameworkless;
 
 import com.nicomincuzzi.frameworkless.maze.ManagerMaze;
+import com.nicomincuzzi.frameworkless.server.HttpServer;
 
 public class Main {
 
