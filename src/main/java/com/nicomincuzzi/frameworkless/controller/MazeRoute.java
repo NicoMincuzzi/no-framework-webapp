@@ -77,7 +77,7 @@ public class MazeRoute extends HttpServlet {
 
     private Map<String, GameResult> runMazeRoutePuzzleWebApp(int roomNumber, List<String> findingItems) {
         JsonManagerMaze jsonMngMaze = new JsonManagerMaze();
-        navMap = new Navigation(findingItems, jsonMngMaze.getArrayRooms());
+        navMap = new Navigation(findingItems, jsonMngMaze.getArrayRooms(), jsonMngMaze);
 
         MazeMap mazeMap = new MazeMap().retrieve(JSON_MAP);
         Room roomMaze = jsonMngMaze.getRoomById(roomNumber, mazeMap);

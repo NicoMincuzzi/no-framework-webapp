@@ -27,7 +27,7 @@ public class PlayState implements MazeState<ManagerMaze> {
 
     @Override
     public void execute() {
-        Navigation navMap = new Navigation(findingItems, jsonMngMaze.getArrayRooms());
+        Navigation navMap = new Navigation(findingItems, jsonMngMaze.getArrayRooms(), jsonMngMaze);
 
         log.info("Searching items...");
         Map<String, GameResult> foundItems = navMap.searchItemsMaze(roomMaze);

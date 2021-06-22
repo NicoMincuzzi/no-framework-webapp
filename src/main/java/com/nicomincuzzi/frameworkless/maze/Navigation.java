@@ -13,12 +13,12 @@ public class Navigation {
     private final List<Room> listRooms;
     private final JsonManagerMaze jsonMngMaze;
 
-    public Navigation(List<String> findingItems, List<Room> listRooms) {
+    public Navigation(List<String> findingItems, List<Room> listRooms, JsonManagerMaze jsonMngMaze) {
         this.findingItems = findingItems;
         this.listRooms = listRooms;
 
         outputMaze = new LinkedHashMap<>();
-        jsonMngMaze = new JsonManagerMaze();
+        this.jsonMngMaze = jsonMngMaze;
     }
 
     public Map<String, GameResult> searchItemsMaze(Room roomMaze) {

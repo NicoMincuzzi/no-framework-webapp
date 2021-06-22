@@ -2,18 +2,20 @@ package com.nicomincuzzi.frameworkless.maze
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito.mock
 
-internal class NavigationTest {
+class NavigationTest {
+
     @Test
     fun showResultRetroRoutePuzzle() {
-        val navigation = Navigation(emptyList(), listOf(Room()))
+        val navigation = Navigation(emptyList(), listOf(Room()), mock(JsonManagerMaze::class.java))
         navigation.showResultRetroRoutePuzzle(HashMap())
     }
 
     @Test
     fun oneItemsIsFoundWithSuccess() {
         val findingItems = listOf("Knife")
-        val navigation = Navigation(findingItems, listOf(Room()))
+        val navigation = Navigation(findingItems, listOf(Room()), mock(JsonManagerMaze::class.java))
         val utensil = Utensil(name = "Knife")
         val roomMaze = Room(objects = listOf(utensil))
 
@@ -24,7 +26,7 @@ internal class NavigationTest {
 
     @Test
     fun noItemsIsFound() {
-        val navigation = Navigation(emptyList(), listOf(Room()))
+        val navigation = Navigation(emptyList(), listOf(Room()), mock(JsonManagerMaze::class.java))
         val utensil = Utensil(name = "Knife")
         val roomMaze = Room(objects = listOf(utensil))
 
