@@ -3,15 +3,12 @@ package com.nicomincuzzi.frameworkless.maze;
 import com.nicomincuzzi.frameworkless.utils.StringHandler;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 public class Navigation {
 
+    private final LinkedHashMap<String, GameResult> outputMaze;
     private final List<String> findingItems;
     private final List<Room> listRooms;
     private final JsonManagerMaze jsonMngMaze;
@@ -20,11 +17,11 @@ public class Navigation {
         this.findingItems = findingItems;
         this.listRooms = listRooms;
 
+        outputMaze = new LinkedHashMap<>();
         jsonMngMaze = new JsonManagerMaze();
     }
 
     public Map<String, GameResult> searchItemsMaze(Room roomMaze) {
-        Map<String, GameResult> outputMaze = new HashMap<>();
         List<String> foundItems = new ArrayList<>();
 
         for (String item : findingItems) {
@@ -72,7 +69,11 @@ public class Navigation {
     }
 
     private void mazeNavigation(Room roomMaze) {
-        Room room = listRooms.stream().filter(x -> x.getId() == roomMaze.getId()).findFirst().get();
+        Room room = listRooms.stream()
+                .filter(x -> x.getId() == roomMaze.getId())
+                .findFirst()
+                .get();
+
         if (roomMaze.getNorth() != null) {
             int nextRoom = roomMaze.getNorth();
             room.setNorth(null);
