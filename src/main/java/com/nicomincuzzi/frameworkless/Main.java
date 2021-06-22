@@ -2,6 +2,7 @@ package com.nicomincuzzi.frameworkless;
 
 import com.nicomincuzzi.frameworkless.maze.ManagerMaze;
 import com.nicomincuzzi.frameworkless.server.HttpServer;
+import com.nicomincuzzi.frameworkless.maze.fsm.MazeFsm;
 
 public class Main {
 
@@ -11,8 +12,8 @@ public class Main {
         server.setServlet(null, "");
         server.run();*/
 
-
-        ManagerMaze mazeRoutePuzzle = new ManagerMaze();
+        MazeFsm<ManagerMaze> mazeFsm = new MazeFsm<>();
+        ManagerMaze mazeRoutePuzzle = new ManagerMaze(mazeFsm);
         mazeRoutePuzzle.runMazeRetroRoutePuzzle();
     }
 }

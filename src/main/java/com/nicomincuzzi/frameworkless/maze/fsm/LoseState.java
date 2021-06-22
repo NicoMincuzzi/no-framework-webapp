@@ -6,13 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class LoseState implements MazeState<ManagerMaze> {
-
     private ManagerMaze maze;
-    private final Navigation navMap;
-
-    public LoseState(Navigation navMap) {
-        this.navMap = navMap;
-    }
 
     @Override
     public void enter(ManagerMaze maze) {
@@ -22,10 +16,6 @@ public class LoseState implements MazeState<ManagerMaze> {
     @Override
     public void execute() {
         log.info("I'm sorry! You haven't found new objects!");
-
-        navMap.showResultRetroRoutePuzzle();
-
         maze.changeStateMazeFsm(new LeaveState());
     }
-
 }

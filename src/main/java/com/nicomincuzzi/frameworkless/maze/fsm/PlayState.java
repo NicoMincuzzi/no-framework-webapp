@@ -32,7 +32,9 @@ public class PlayState implements MazeState<ManagerMaze> {
         log.info("Searching items...");
         Map<String, GameResult> foundItems = navMap.searchItemsMaze(roomMaze);
 
-        MazeState<ManagerMaze> state = isFoundItem(foundItems) ? new WinState(navMap) : new LoseState(navMap);
+        MazeState<ManagerMaze> state = isFoundItem(foundItems) ? new WinState() : new LoseState();
+
+        navMap.showResultRetroRoutePuzzle(foundItems);
 
         maze.changeStateMazeFsm(state);
     }

@@ -1,9 +1,13 @@
 # no-framework-webapp
 [![CI](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml)
 
-The aim is to develop a Java web application, which doesn't need to use frameworks. 
+In particular, here we show how to implement a Java Web application, replacing some the most famous frameworks (like Spring and JPA) with plain [servlets](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#servlet) and [JDBC](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#jdbc).
 
 ## Purpose :dart: 
+
+The aim is to develop a web application, which doesn't need to use `frameworks`. In particular, it shows how to develop a project or a single feature with no dependence on a `framework` is a **real possibility**. We acknowledge the availability of alternatives to `frameworks`, by using dedicated libraries and/or standard libraries.
+
+See more information about the [Frameworkless movement](https://github.com/frameworkless-movement/manifesto).
 
 ## What dependencies do you need? :link:
 
@@ -17,32 +21,15 @@ implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3
 
 ## Build and Run
 
-Di seguito alcune informazioni per poterla testare:
-I comandi docker da utilizzare sono i seguenti per la build dell'image e per testare i tre distinti step:
+```sh 
 docker build -t mytest .
 
 docker container run -it -p 9090:9090 mytest ./scripts/build.sh
 docker container run -it -p 9090:9090 mytest ./scripts/tests.sh
 docker container run -it -p 9090:9090 mytest ./scripts/run.sh
+```
 
-     2. Il file JSON contenente la mappa dovrà essere inserito nella folder:
-
-src/main/resources
-
-         e dovrà essere etichettato con il nome map.json  
-
-    3. Mediante il commando docker container run -it -p 9090:9090 mytest ./scripts/run.sh viene lanciata l'applicazione, con la quale si può interagire in modalità:
-applicazione desktop: in questo caso l'ID della room e la lista degli oggetti da collezionare viene inserita mediante console (Figura 1). In output verrà restituita la tabella contente ID, ROOM_NAME, OBJECTS.
-
-Figura 1: desktop app​
-
-​Web application: l'applicazione mette a disposizione un servizio RESTful che è raggiungibile all'indirizzo: localhost:9090/api/v1/mazeroutepuzzle .  Quest'ultimo è stato testato mediante il tool Postman, mediante il quale è possibile inviare richieste POST HTTP, il cui body presentava l'ID della room e la lista degli oggetti da collezionare in formato JSON (Figura 2).
-
-Figura 2: HTTP request's body
-
-                 All'interno del body della risposta il servizio RESTful restituisce la tabella contente ID, ROOM_NAME, OBJECTS in formato JSON. 
-                 
-                 Nota: In allegato trovate un esempio di richiesta da poter importare direttamente in Postman in modo da testare la web application.
+Il file JSON contenente la mappa dovrà essere inserito nella folder `src/main/resources` e dovrà essere etichettato con il nome map.json
 
 ## Servlet
 
@@ -61,14 +48,38 @@ The lifecycle of a servlet is controlled by the container in which the servlet h
    * Creates an instance of the servlet class
 
    * Initializes the servlet instance by calling the `init` method (initialization is covered in Creating and Initializing a Servlet)
+     * Generally, the servlet is created when a user first invokes a URL corresponding to the servlet, but you can also specify that the which servlet should be loaded when the server is first started 
 
-2. The container invokes the `service` method, passing request and response objects. Service methods are discussed in Writing Service Methods.
+2. The container invokes the `service` method, passing request and response objects.
+  * Each time the server receives a request for a servlet, the web container spawns a new thread and calls `service()`
 
 If it needs to remove the servlet, the container finalizes the servlet by calling the servlet's `destroy` method.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/48289901/119905545-bdf06480-bf4c-11eb-99d1-44cf34f41740.jpg" alt="servlet"/>
 </p>
+
+### ServletContextListener
+
+The ServletContextListener will run your code before the web application is started. For example, you want to initialize a database connection pool before the web application is started.
+
+In this example, we will show you how to create a custom listener class by implementing ServletContextListener, which run your code before the web application is started.
+
+```java
+@WebListener
+public class ContextListener implements ServletContextListener {
+ 
+    @Override
+    public void contextInitialized(ServletContextEvent event) {
+        System.out.println("The application started");
+    }
+     
+    @Override
+    public void contextDestroyed(ServletContextEvent event) {
+        System.out.println("The application stopped");
+    }
+}
+```
 
 ## JDBC
 

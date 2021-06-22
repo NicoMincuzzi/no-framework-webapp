@@ -6,13 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class WinState implements MazeState<ManagerMaze> {
-
     private ManagerMaze maze;
-    private final Navigation navMap;
-
-    public WinState(Navigation navMap) {
-        this.navMap = navMap;
-    }
 
     @Override
     public void enter(ManagerMaze maze) {
@@ -22,9 +16,6 @@ public class WinState implements MazeState<ManagerMaze> {
     @Override
     public void execute() {
         log.info("Cool! You have found new objects!");
-        navMap.showResultRetroRoutePuzzle();
-
         maze.changeStateMazeFsm(new LeaveState());
     }
-
 }

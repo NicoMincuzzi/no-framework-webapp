@@ -1,15 +1,17 @@
 package com.nicomincuzzi.frameworkless.maze;
 
-import com.nicomincuzzi.frameworkless.dao.ResultEntity;
 import com.nicomincuzzi.frameworkless.utils.StringHandler;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Slf4j
 public class Navigation {
 
-    private final Map<String, GameResult> outputMaze;
     private final List<String> findingItems;
     private final List<Room> listRooms;
     private final JsonManagerMaze jsonMngMaze;
@@ -18,11 +20,11 @@ public class Navigation {
         this.findingItems = findingItems;
         this.listRooms = listRooms;
 
-        outputMaze = new HashMap<>();
         jsonMngMaze = new JsonManagerMaze();
     }
 
     public Map<String, GameResult> searchItemsMaze(Room roomMaze) {
+        Map<String, GameResult> outputMaze = new HashMap<>();
         List<String> foundItems = new ArrayList<>();
 
         for (String item : findingItems) {
@@ -50,24 +52,23 @@ public class Navigation {
         return outputMaze;
     }
 
-    public ResultEntity showResultRetroRoutePuzzle() {
+    public void showResultRetroRoutePuzzle(Map<String, GameResult> foundItems) {
         log.info("+----+-------------+--------------------+");
         log.info("| ID | Room        | Object Collected   |");
         log.info("+----+-------------+--------------------+");
 
-        for (String idStepRoute : outputMaze.keySet()) {
+        for (String idStepRoute : foundItems.keySet()) {
             String items = null;
 
-            for (String item : outputMaze.get(idStepRoute).getItems()) {
+            for (String item : foundItems.get(idStepRoute).getItems()) {
                 items = StringHandler.getInstance().removeLastComma(item.concat(","));
             }
 
-            log.info("| " + outputMaze.get(idStepRoute).getId() +
-                    "  | " + outputMaze.get(idStepRoute).getRoom() +
+            log.info("| " + foundItems.get(idStepRoute).getId() +
+                    "  | " + foundItems.get(idStepRoute).getRoom() +
                     " | " + items + "|");
         }
         log.info("+----+-------------+--------------------+");
-        return null;
     }
 
     private void mazeNavigation(Room roomMaze) {
