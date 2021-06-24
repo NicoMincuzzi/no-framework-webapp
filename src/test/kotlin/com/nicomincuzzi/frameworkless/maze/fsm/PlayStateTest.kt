@@ -5,26 +5,42 @@ import com.nicomincuzzi.frameworkless.maze.ManagerMaze
 import com.nicomincuzzi.frameworkless.maze.Room
 import com.nicomincuzzi.frameworkless.maze.Utensil
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentCaptor
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 
 
 class PlayStateTest {
+
     @Test
-    @Disabled
-    fun execute() {
-        val utensil = Utensil(name = "Knife")
-        val room = Room(objects = listOf(utensil))
-        val playState = PlayState(listOf(), mock(JsonManagerMaze::class.java), room)
+    fun winInPlayState() {
+        val room = Room(objects = listOf(Utensil(name = "Knife")))
+        val jsonManagerMaze = mock(JsonManagerMaze::class.java)
         val managerMaze = mock(ManagerMaze::class.java)
+        `when`(jsonManagerMaze.arrayRooms).thenReturn(listOf(Room()))
+
+        val playState = PlayState(listOf("Knife"), jsonManagerMaze, room)
         playState.enter(managerMaze)
         playState.execute()
 
         val argument: ArgumentCaptor<WinState> = ArgumentCaptor.forClass(WinState::class.java)
         verify(managerMaze).changeStateMazeFsm(argument.capture())
         assertTrue(argument.value is WinState)
+    }
+
+    @Test
+    fun loseInPlayState() {
+        val room = Room(objects = listOf(Utensil(name = "Knife")))
+        val jsonManagerMaze = mock(JsonManagerMaze::class.java)
+        val managerMaze = mock(ManagerMaze::class.java)
+        `when`(jsonManagerMaze.arrayRooms).thenReturn(listOf(Room()))
+
+        val playState = PlayState(listOf("Fork"), jsonManagerMaze, room)
+        playState.enter(managerMaze)
+        playState.execute()
+
+        val argument: ArgumentCaptor<WinState> = ArgumentCaptor.forClass(WinState::class.java)
+        verify(managerMaze).changeStateMazeFsm(argument.capture())
+        assertTrue(argument.value is LoseState)
     }
 }

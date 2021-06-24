@@ -5,10 +5,10 @@ import java.util.*
 
 data class Room(
         @JsonProperty
-        val id: Int = -1,
+        val id: Int = 3,
 
         @JsonProperty
-        val name: String = "",
+        val name: String = "Kitchen",
 
         @JsonProperty
         var north: Int? = null,
