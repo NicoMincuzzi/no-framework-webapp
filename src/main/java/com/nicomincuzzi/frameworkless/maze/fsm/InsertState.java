@@ -1,7 +1,9 @@
 package com.nicomincuzzi.frameworkless.maze.fsm;
 
-import com.nicomincuzzi.frameworkless.maze.*;
+import com.nicomincuzzi.frameworkless.maze.JsonManagerMaze;
+import com.nicomincuzzi.frameworkless.maze.ManagerMaze;
 import com.nicomincuzzi.frameworkless.maze.MazeMap;
+import com.nicomincuzzi.frameworkless.maze.Room;
 import com.nicomincuzzi.frameworkless.utils.StringHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +20,10 @@ public class InsertState implements MazeState<ManagerMaze> {
 
     private final Logger logger = LoggerFactory.getLogger(InsertState.class);
 
-    public InsertState(MazeMap mazeMap, JsonManagerMaze jsonMngMaze) {
+    public InsertState(Scanner scanner, MazeMap mazeMap, JsonManagerMaze jsonMngMaze) {
         this.mazeMap = mazeMap;
         this.jsonMngMaze = jsonMngMaze;
-
-        scanner = new Scanner(System.in);
+        this.scanner = scanner;
     }
 
     @Override
@@ -38,7 +39,7 @@ public class InsertState implements MazeState<ManagerMaze> {
         Room roomMaze = jsonMngMaze.getRoomById(roomNumber, this.mazeMap);
 
         if (roomMaze == null) {
-            logger.error("Please insert a valide room number!");
+            logger.error("Please insert a valid room number!");
             maze.changeStateMazeFsm(new LeaveState());
         }
 

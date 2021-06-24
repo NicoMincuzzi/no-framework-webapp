@@ -4,11 +4,15 @@ import com.nicomincuzzi.frameworkless.maze.JsonManagerMaze;
 import com.nicomincuzzi.frameworkless.maze.MazeMap;
 import com.nicomincuzzi.frameworkless.maze.ManagerMaze;
 
+import java.util.Scanner;
+
 public class StartState implements MazeState<ManagerMaze> {
 
     private static final String JSON_MAP = "map.json";
 
     private ManagerMaze maze;
+
+    Scanner scanner = new Scanner(System.in);
 
     @Override
     public void enter(ManagerMaze maze) {
@@ -21,7 +25,7 @@ public class StartState implements MazeState<ManagerMaze> {
 
         MazeMap mazeMap = new MazeMap().retrieve(JSON_MAP);
 
-        maze.changeStateMazeFsm(new InsertState(mazeMap, jsonMngMaze));
+        maze.changeStateMazeFsm(new InsertState(scanner, mazeMap, jsonMngMaze));
     }
 
 }

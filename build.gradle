@@ -27,6 +27,8 @@ dependencies {
     testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.7.0')
     testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
     testImplementation('org.mockito:mockito-junit-jupiter:3.10.0')
+    testImplementation group: 'org.mockito', name: 'mockito-inline', version: '3.10.0'
+
 
     test {
         useJUnitPlatform()
