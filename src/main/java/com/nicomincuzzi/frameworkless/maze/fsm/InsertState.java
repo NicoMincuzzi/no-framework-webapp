@@ -39,14 +39,14 @@ public class InsertState implements MazeState<ManagerMaze> {
         Room roomMaze = jsonMngMaze.getRoomById(roomNumber, this.mazeMap);
 
         if (roomMaze == null) {
-            logger.error("Please insert a valid room number!");
+            logger.info("Please insert a valid room number!");
             maze.changeStateMazeFsm(new LeaveState());
+        } else {
+            logger.info("Input objects to collect: ");
+            String objToCollect = scanner.nextLine();
+            List<String> findingItems = StringHandler.getInstance().getListInputWords(objToCollect);
+
+            maze.changeStateMazeFsm(new PlayState(findingItems, jsonMngMaze, roomMaze));
         }
-
-        logger.info("Input objects to collect: ");
-        String objToCollect = scanner.nextLine();
-        List<String> findingItems = StringHandler.getInstance().getListInputWords(objToCollect);
-
-        maze.changeStateMazeFsm(new PlayState(findingItems, jsonMngMaze, roomMaze));
     }
 }
