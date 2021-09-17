@@ -61,7 +61,7 @@ If it needs to remove the servlet, the container finalizes the servlet by callin
 
 ### ServletContextListener
 
-The ServletContextListener will run your code before the web application is started. For example, you want to initialize a database connection pool before the web application is started.
+The `ServletContextListener` will run your code before the web application is started. For example, you want to initialize a database connection pool before the web application is started.
 
 In this example, we will show you how to create a custom listener class by implementing ServletContextListener, which run your code before the web application is started.
 
