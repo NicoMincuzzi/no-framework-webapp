@@ -1,57 +1,47 @@
 package com.nicomincuzzi.frameworkless.server;
 
-import com.nicomincuzzi.frameworkless.controller.MazeRoute;
+import jakarta.servlet.Servlet;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+import static org.eclipse.jetty.servlet.ServletContextHandler.NO_SESSIONS;
+
 public class HttpServer {
-
-    private static Server server;
-    private int port = 8080;
-    private String contextPath = "";
-
-    public HttpServer() {
-    }
-
-    public HttpServer(int port) {
-        this.port = port;
-    }
+    private Server server;
+    private final int port;
+    private final String contextPath;
+    private ServletContextHandler context;
 
     public HttpServer(int port, String contextPath) {
         this.port = port;
         this.contextPath = contextPath;
+        run();
     }
 
-    public void run() {
-        try {
-            server = new Server();
-            ServerConnector connector = new ServerConnector(server);
-            connector.setPort(port);
-            server.setConnectors(new Connector[]{connector});
+    private void run() {
+        server = new Server();
 
-            ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-            context.setContextPath(contextPath);
-            server.setHandler(context);
+        ServerConnector connector = new ServerConnector(server);
+        connector.setPort(port);
+        server.setConnectors(new Connector[]{connector});
 
-            context.addServlet(new ServletHolder(new MazeRoute()), "/api/v1/mazeroute");
-
-            server.start();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        context = new ServletContextHandler(NO_SESSIONS);
+        context.setContextPath(contextPath);
+        server.setHandler(context);
     }
 
-    public <T> void setServlet(Class<T> httpServlet, String path) {
+    public void setServlet(Class<? extends Servlet> httpServlet, String path) {
+        context.addServlet(new ServletHolder(httpServlet), path);
     }
 
-    public void shutdown() {
-        try {
-            server.stop();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public void start() throws Exception {
+        server.start();
+    }
+
+    public void shutdown() throws Exception {
+        server.stop();
     }
 }
