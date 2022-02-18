@@ -19,18 +19,6 @@ implementation ('org.eclipse.jetty:jetty-servlet:11.0.2')
 implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 ```
 
-## Build and Run
-
-```sh 
-docker build -t mytest .
-
-docker container run -it -p 9090:9090 mytest ./scripts/build.sh
-docker container run -it -p 9090:9090 mytest ./scripts/tests.sh
-docker container run -it -p 9090:9090 mytest ./scripts/run.sh
-```
-
-Il file JSON contenente la mappa dovrà essere inserito nella folder `src/main/resources` e dovrà essere etichettato con il nome map.json
-
 ## Servlet
 
 ### What Is a Servlet?
