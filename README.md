@@ -21,12 +21,12 @@ implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3
 
 ## Servlet
 
-### What Is a Servlet?
+### - What Is a Servlet?
 A *servlet* is a Java programming language class used to extend the capabilities of servers, that host applications accessed by means of a request-response programming model. Although servlets can respond to any type of request, they are commonly used to extend the applications hosted by web servers. For such applications, Java Servlet technology defines HTTP-specific servlet classes.
 
 The `javax.servlet` and `javax.servlet.http` packages provide interfaces and classes for writing servlets. All servlets must implement the Servlet interface, which defines lifecycle methods. When implementing a generic service, you can use or extend the GenericServlet class provided with the Java Servlet API. The HttpServlet class provides methods, such as doGet and doPost, for handling HTTP-specific services.
 
-### Servlet Lifecycle
+### - Servlet Lifecycle
 The lifecycle of a servlet is controlled by the container in which the servlet has been deployed. When a request is mapped to a servlet, the container performs the following steps.
 
 1. If an instance of the servlet does not exist, the web container:
@@ -47,15 +47,15 @@ If it needs to remove the servlet, the container finalizes the servlet by callin
   <img src="https://user-images.githubusercontent.com/48289901/119905545-bdf06480-bf4c-11eb-99d1-44cf34f41740.jpg" alt="servlet"/>
 </p>
 
-### Setting Contexts
+### - Setting Contexts
 A `ContextHandler` is a HandlerWrapper that responds only to requests that have a URI prefix that matches the configured context path.
 
 Requests that match the context path have their path methods updated accordingly.
 
-### Setting a ServletContext
+### - Setting a ServletContext
 A `ServletContextHandler` is a specialization of `ContextHandler` with support for standard servlets.
 
-### ServletContextListener
+### - ServletContextListener
 
 The `ServletContextListener` will run your code before the web application is started. For example, you want to initialize a database connection pool before the web application is started.
 
