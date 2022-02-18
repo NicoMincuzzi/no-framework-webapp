@@ -59,6 +59,14 @@ If it needs to remove the servlet, the container finalizes the servlet by callin
   <img src="https://user-images.githubusercontent.com/48289901/119905545-bdf06480-bf4c-11eb-99d1-44cf34f41740.jpg" alt="servlet"/>
 </p>
 
+### Setting Contexts
+A `ContextHandler` is a HandlerWrapper that responds only to requests that have a URI prefix that matches the configured context path.
+
+Requests that match the context path have their path methods updated accordingly.
+
+### Setting a ServletContext
+A `ServletContextHandler` is a specialization of `ContextHandler` with support for standard servlets.
+
 ### ServletContextListener
 
 The `ServletContextListener` will run your code before the web application is started. For example, you want to initialize a database connection pool before the web application is started.
