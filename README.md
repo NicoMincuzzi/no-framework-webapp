@@ -82,3 +82,8 @@ public class ContextListener implements ServletContextListener {
 Java Database Connectivity (JDBC) is an application programming interface (API) for the programming language Java, which defines how a client may access a database. It is part of the Java Standard Edition platform and provides methods to query and update data in a database, and is oriented towards relational databases.
 
 [PostgreSQL JDBC Driver](https://jdbc.postgresql.org/documentation/head/intro.html) (PgJDBC for short) allows Java programs to connect to a PostgreSQL database using standard, database independent Java code. Is an open source JDBC driver written in Pure Java (Type 4), and communicates in the PostgreSQL native network protocol. Because of this, the driver is platform independent; once compiled, the driver can be used on any system.
+
+## References
+
+- https://wiki.eclipse.org/Jetty/Tutorial/Embedding_Jetty
+- https://www.eclipse.org/jetty/documentation/jetty-11/programming-guide/index.html#pg-server-http-handler-use-servlet
