@@ -1,5 +1,6 @@
 # no-framework-webapp
-[![CI](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml)
+[![CI](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml) 
+[![Java](https://img.shields.io/badge/java-11-red)](https://img.shields.io/badge/java-11-red)
 
 The aim is to show how to implement a Java Web application, replacing some the most famous frameworks (like Spring and JPA) with plain [servlets](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#servlet) and [JDBC](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#jdbc).
 
