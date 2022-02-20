@@ -1,4 +1,4 @@
-package com.nicomincuzzi.frameworkless.controller;
+package com.nicomincuzzi.frameworkless.infrastructure;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 

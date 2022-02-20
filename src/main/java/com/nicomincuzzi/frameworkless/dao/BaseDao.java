@@ -1,5 +1,7 @@
 package com.nicomincuzzi.frameworkless.dao;
 
+import com.nicomincuzzi.frameworkless.domain.repository.ResultEntity;
+
 import java.util.List;
 
 public abstract class BaseDao {

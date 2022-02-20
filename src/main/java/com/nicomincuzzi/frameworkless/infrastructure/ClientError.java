@@ -1,4 +1,4 @@
-package com.nicomincuzzi.frameworkless.controller;
+package com.nicomincuzzi.frameworkless.infrastructure;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

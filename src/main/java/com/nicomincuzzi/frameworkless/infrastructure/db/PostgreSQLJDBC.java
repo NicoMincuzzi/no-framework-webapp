@@ -1,4 +1,4 @@
-package com.nicomincuzzi.frameworkless.db;
+package com.nicomincuzzi.frameworkless.infrastructure.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

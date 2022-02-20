@@ -1,4 +1,4 @@
-package com.nicomincuzzi.frameworkless.utils;
+package com.nicomincuzzi.frameworkless.configuration;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.nicomincuzzi.frameworkless.controller;
+package com.nicomincuzzi.frameworkless.infrastructure;
 
 public class NotFoundException extends ClientError {
     public NotFoundException(String path) {
