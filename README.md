@@ -1,5 +1,6 @@
 # no-framework-webapp
-[![CI](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml)
+[![CI](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NicoMincuzzi/no-framework-webapp/actions/workflows/ci.yml) 
+[![Java](https://img.shields.io/badge/java-11-red)](https://img.shields.io/badge/java-11-red)
 
 The aim is to show how to implement a Java Web application, replacing some the most famous frameworks (like Spring and JPA) with plain [servlets](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#servlet) and [JDBC](https://github.com/NicoMincuzzi/no-framework-webapp/blob/main/README.md#jdbc).
 
@@ -19,26 +20,14 @@ implementation ('org.eclipse.jetty:jetty-servlet:11.0.2')
 implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 ```
 
-## Build and Run
-
-```sh 
-docker build -t mytest .
-
-docker container run -it -p 9090:9090 mytest ./scripts/build.sh
-docker container run -it -p 9090:9090 mytest ./scripts/tests.sh
-docker container run -it -p 9090:9090 mytest ./scripts/run.sh
-```
-
-Il file JSON contenente la mappa dovrà essere inserito nella folder `src/main/resources` e dovrà essere etichettato con il nome map.json
-
 ## Servlet
 
-### What Is a Servlet?
+### - What Is a Servlet?
 A *servlet* is a Java programming language class used to extend the capabilities of servers, that host applications accessed by means of a request-response programming model. Although servlets can respond to any type of request, they are commonly used to extend the applications hosted by web servers. For such applications, Java Servlet technology defines HTTP-specific servlet classes.
 
 The `javax.servlet` and `javax.servlet.http` packages provide interfaces and classes for writing servlets. All servlets must implement the Servlet interface, which defines lifecycle methods. When implementing a generic service, you can use or extend the GenericServlet class provided with the Java Servlet API. The HttpServlet class provides methods, such as doGet and doPost, for handling HTTP-specific services.
 
-### Servlet Lifecycle
+### - Servlet Lifecycle
 The lifecycle of a servlet is controlled by the container in which the servlet has been deployed. When a request is mapped to a servlet, the container performs the following steps.
 
 1. If an instance of the servlet does not exist, the web container:
@@ -59,7 +48,15 @@ If it needs to remove the servlet, the container finalizes the servlet by callin
   <img src="https://user-images.githubusercontent.com/48289901/119905545-bdf06480-bf4c-11eb-99d1-44cf34f41740.jpg" alt="servlet"/>
 </p>
 
-### ServletContextListener
+### - Setting Contexts
+A `ContextHandler` is a HandlerWrapper that responds only to requests that have a URI prefix that matches the configured context path.
+
+Requests that match the context path have their path methods updated accordingly.
+
+### - Setting a ServletContext
+A `ServletContextHandler` is a specialization of `ContextHandler` with support for standard servlets.
+
+### - ServletContextListener
 
 The `ServletContextListener` will run your code before the web application is started. For example, you want to initialize a database connection pool before the web application is started.
 
@@ -86,3 +83,8 @@ public class ContextListener implements ServletContextListener {
 Java Database Connectivity (JDBC) is an application programming interface (API) for the programming language Java, which defines how a client may access a database. It is part of the Java Standard Edition platform and provides methods to query and update data in a database, and is oriented towards relational databases.
 
 [PostgreSQL JDBC Driver](https://jdbc.postgresql.org/documentation/head/intro.html) (PgJDBC for short) allows Java programs to connect to a PostgreSQL database using standard, database independent Java code. Is an open source JDBC driver written in Pure Java (Type 4), and communicates in the PostgreSQL native network protocol. Because of this, the driver is platform independent; once compiled, the driver can be used on any system.
+
+## References
+
+- https://wiki.eclipse.org/Jetty/Tutorial/Embedding_Jetty
+- https://www.eclipse.org/jetty/documentation/jetty-11/programming-guide/index.html#pg-server-http-handler-use-servlet
