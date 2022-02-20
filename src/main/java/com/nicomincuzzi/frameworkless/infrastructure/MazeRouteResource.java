@@ -1,8 +1,13 @@
-package com.nicomincuzzi.frameworkless.controller;
+package com.nicomincuzzi.frameworkless.infrastructure;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nicomincuzzi.frameworkless.maze.*;
-import com.nicomincuzzi.frameworkless.utils.StringHandler;
+import com.nicomincuzzi.frameworkless.configuration.StringHandler;
+import com.nicomincuzzi.frameworkless.domain.GameResult;
+import com.nicomincuzzi.frameworkless.domain.JsonManagerMaze;
+import com.nicomincuzzi.frameworkless.domain.MazeMap;
+import com.nicomincuzzi.frameworkless.domain.PlayState;
+import com.nicomincuzzi.frameworkless.domain.Room;
+import com.nicomincuzzi.frameworkless.domain.repository.MazeMapRepository;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,11 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-public class MazeRoute extends HttpServlet {
-
-    private static final String JSON_MAP = "map.json";
-
-    private Navigation navMap;
+public class MazeRouteResource extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -30,37 +31,24 @@ public class MazeRoute extends HttpServlet {
         List<String> objsCollect = (List<String>) bodyRequest.get("objects");
 
         List<String> findingItems = new ArrayList<>();
-
         findingItems.addAll(objsCollect);
 
-        Map<String, GameResult> foundItems = new HashMap<>();
-        try {
-            foundItems = runMazeRoutePuzzleWebApp(Integer.parseInt(roomNumber), findingItems);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        resp.setContentType("application/json");
+        MazeMap mazeMap = new MazeMapRepository().retrieve("map.json");
+        JsonManagerMaze jsonMngMaze = new JsonManagerMaze();
+        Room roomMaze = retrieveRoomMaze(Integer.parseInt(roomNumber), mazeMap, jsonMngMaze);
+        PlayState playState = new PlayState(findingItems, jsonMngMaze, roomMaze, new GameResult());
+        Map<String, GameResult> foundItems = playState.execute();
 
-        //create a JSON bodyRequest response
-        Map<String, List<Map<String, String>>> response = setBodyResponse(foundItems);
-
-        // Allocate a output writer to write the response message into the network socket
         PrintWriter outResponse = null;
-
-        // Write the response message, in an HTML page
         try {
+            resp.setContentType("application/json");
             outResponse = resp.getWriter();
-            outResponse.println(response);
+            outResponse.println(setBodyResponse(foundItems));
         } catch (IOException e) {
             log.error("Error in sent response: ", e);
         } finally {
             outResponse.flush();
         }
-    }
-
-    @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-
     }
 
     private <T> Map<String, T> getBodyRequest(BufferedReader bodyRequest) throws IOException {
@@ -75,13 +63,14 @@ public class MazeRoute extends HttpServlet {
         return new ObjectMapper().readValue(sb.toString(), Map.class);
     }
 
-    private Map<String, GameResult> runMazeRoutePuzzleWebApp(int roomNumber, List<String> findingItems) {
-        JsonManagerMaze jsonMngMaze = new JsonManagerMaze();
-        navMap = new Navigation(findingItems, jsonMngMaze.getArrayRooms(), jsonMngMaze);
-
-        MazeMap mazeMap = new MazeMap().retrieve(JSON_MAP);
+    public Room retrieveRoomMaze(int roomNumber, MazeMap mazeMap, JsonManagerMaze jsonMngMaze) {
         Room roomMaze = jsonMngMaze.getRoomById(roomNumber, mazeMap);
-        return navMap.searchItemsMaze(roomMaze);
+
+        if (roomMaze == null) {
+            log.warn("Please insert a valid room number!");
+            return null;
+        }
+        return roomMaze;
     }
 
     private Map<String, List<Map<String, String>>> setBodyResponse(Map<String, GameResult> resultOutput) {
@@ -107,7 +96,6 @@ public class MazeRoute extends HttpServlet {
         }
 
         objResult.put("result", listResult);
-
         return objResult;
     }
 }

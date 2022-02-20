@@ -1,4 +1,4 @@
-package com.nicomincuzzi.frameworkless.dao
+package com.nicomincuzzi.frameworkless.domain.repository
 
 data class ResultEntity(
         val roomId: Int,

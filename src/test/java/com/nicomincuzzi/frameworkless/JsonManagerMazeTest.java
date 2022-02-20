@@ -1,4 +1,4 @@
-package com.nicomincuzzi.frameworkless.maze;
+package com.nicomincuzzi.frameworkless;
 
 import org.junit.jupiter.api.Test;
 

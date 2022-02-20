@@ -1,4 +1,4 @@
-package com.nicomincuzzi.frameworkless.server;
+package com.nicomincuzzi.frameworkless.infrastructure.server;
 
 import jakarta.servlet.Servlet;
 import org.eclipse.jetty.server.Connector;
