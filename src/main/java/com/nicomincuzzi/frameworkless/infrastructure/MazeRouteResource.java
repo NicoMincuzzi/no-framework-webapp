@@ -36,6 +36,7 @@ public class MazeRouteResource extends HttpServlet {
         MazeMap mazeMap = new MazeMapRepository().retrieve("map.json");
         JsonManagerMaze jsonMngMaze = new JsonManagerMaze();
         Room roomMaze = retrieveRoomMaze(Integer.parseInt(roomNumber), mazeMap, jsonMngMaze);
+
         PlayState playState = new PlayState(findingItems, jsonMngMaze, roomMaze, new GameResult());
         Map<String, GameResult> foundItems = playState.execute();
 
